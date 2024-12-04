@@ -36,6 +36,17 @@ app.get("/pokemons", (req, res) => {
   res.json(pokemons);
 });
 
+app.post("/series", (req, res) => {
+  const { series } = req.body;
+  
+  if (!series || series.length < 3) {
+    return res.status(400).json({ error: "Por favor, forneça uma lista de pelo menos 3 séries." });
+  }
+  
+  const favoriteSeries = series.slice(0, 3);
+  res.json(favoriteSeries);
+});
+
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 const html = `
